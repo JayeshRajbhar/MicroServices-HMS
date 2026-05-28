@@ -1,0 +1,122 @@
+:root {
+  --colors-primary: #111111;
+  --colors-primary-active: #242424;
+  --colors-brand-accent: #3b82f6;
+  --colors-badge-orange: #fb923c;
+  --colors-badge-pink: #ec4899;
+  --colors-badge-violet: #8b5cf6;
+  --colors-badge-emerald: #34d399;
+
+  --colors-canvas: #ffffff;
+  --colors-surface-soft: #f8f9fa;
+  --colors-surface-card: #f5f5f5;
+  --colors-surface-strong: #e5e7eb;
+  --colors-surface-dark: #101010;
+  --colors-surface-dark-elevated: #1a1a1a;
+  --colors-hairline: #e5e7eb;
+  --colors-hairline-soft: #f3f4f6;
+
+  --colors-ink: #111111;
+  --colors-body: #374151;
+  --colors-muted: #6b7280;
+  --colors-muted-soft: #898989;
+  --colors-on-primary: #ffffff;
+  --colors-on-dark: #ffffff;
+  --colors-on-dark-soft: #a1a1aa;
+
+  --colors-success: #10b981;
+  --colors-warning: #f59e0b;
+  --colors-error: #ef4444;
+
+  --spacing-xxs: 4px;
+  --spacing-xs: 8px;
+  --spacing-sm: 12px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 48px;
+  --spacing-section: 96px;
+
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-pill: 9999px;
+  --radius-full: 9999px;
+
+  --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.05), 0 4px 12px rgba(0, 0, 0, 0.08);
+  --container-max: 1200px;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  height: 100%;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  color: var(--colors-ink);
+  background: var(--colors-canvas);
+  font-family:
+    var(--font-body),
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display), var(--font-body), sans-serif;
+  color: var(--colors-ink);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+textarea {
+  font-family: inherit;
+}
+
+::selection {
+  background: var(--colors-surface-strong);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
