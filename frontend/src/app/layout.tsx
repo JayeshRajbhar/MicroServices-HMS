@@ -36,6 +36,9 @@ export default function RootLayout({
       lang="en"
       className={`${displayFont.variable} ${bodyFont.variable} ${monoFont.variable}`}
     >
+      <head>
+        <meta name="apple-mobile-web-app-title" content="Hospital" />
+      </head>
       <body>{children}</body>
     </html>
   );
