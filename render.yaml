@@ -1,121 +1,30 @@
 services:
-  - type: pserv
-    runtime: docker
-    name: hms-eureka-server
-    repo: https://github.com/AnkushRaheja/HMS_Micro.git
-    branch: main
-    dockerfilePath: eureka-server/Dockerfile
-    dockerContext: eureka-server
-    envVars:
-      - key: EUREKA_PORT
-        value: 8761
-
-  - type: pserv
-    runtime: docker
-    name: hms-auth-service
-    repo: https://github.com/AnkushRaheja/HMS_Micro.git
-    branch: main
-    dockerfilePath: auth-service/Dockerfile
-    dockerContext: auth-service
-    envVars:
-      - key: AUTH_PORT
-        value: 8084
-      - key: EUREKA_HOST
-        fromService:
-          name: hms-eureka-server
-          type: pserv
-          property: host
-      - key: EUREKA_PORT
-        value: 8761
-      - key: DB_PASSWORD
-        sync: false
-      - key: JWT_SECRET
-        sync: false
-
-  - type: pserv
-    runtime: docker
-    name: hms-patient-service
-    repo: https://github.com/AnkushRaheja/HMS_Micro.git
-    branch: main
-    dockerfilePath: patient/Dockerfile
-    dockerContext: patient
-    envVars:
-      - key: PATIENT_PORT
-        value: 8081
-      - key: EUREKA_HOST
-        fromService:
-          name: hms-eureka-server
-          type: pserv
-          property: host
-      - key: EUREKA_PORT
-        value: 8761
-      - key: DB_PASSWORD
-        sync: false
-      - key: JWT_SECRET
-        sync: false
-
-  - type: pserv
-    runtime: docker
-    name: hms-doctor-service
-    repo: https://github.com/AnkushRaheja/HMS_Micro.git
-    branch: main
-    dockerfilePath: doctor/Dockerfile
-    dockerContext: doctor
-    envVars:
-      - key: DOCTOR_PORT
-        value: 8082
-      - key: EUREKA_HOST
-        fromService:
-          name: hms-eureka-server
-          type: pserv
-          property: host
-      - key: EUREKA_PORT
-        value: 8761
-      - key: DB_PASSWORD
-        sync: false
-      - key: JWT_SECRET
-        sync: false
-
-  - type: pserv
-    runtime: docker
-    name: hms-staff-service
-    repo: https://github.com/AnkushRaheja/HMS_Micro.git
-    branch: main
-    dockerfilePath: staff/Dockerfile
-    dockerContext: staff
-    envVars:
-      - key: STAFF_PORT
-        value: 8083
-      - key: EUREKA_HOST
-        fromService:
-          name: hms-eureka-server
-          type: pserv
-          property: host
-      - key: EUREKA_PORT
-        value: 8761
-      - key: DB_PASSWORD
-        sync: false
-      - key: JWT_SECRET
-        sync: false
-
   - type: web
+    plan: free
     runtime: docker
-    name: hms-api-gateway
+    name: hms-backend
     repo: https://github.com/AnkushRaheja/HMS_Micro.git
     branch: main
-    dockerfilePath: api-gateway/Dockerfile
-    dockerContext: api-gateway
+    dockerfilePath: Dockerfile
+    dockerContext: .
     healthCheckPath: /actuator/health
     envVars:
       - key: GATEWAY_PORT
         value: 10000
       - key: EUREKA_HOST
-        fromService:
-          name: hms-eureka-server
-          type: pserv
-          property: host
+        value: localhost
       - key: EUREKA_PORT
         value: 8761
+      - key: AUTH_PORT
+        value: 8084
+      - key: PATIENT_PORT
+        value: 8081
+      - key: DOCTOR_PORT
+        value: 8082
+      - key: STAFF_PORT
+        value: 8083
+      - key: DB_PASSWORD
+        sync: false
       - key: JWT_SECRET
         sync: false
       - key: FRONTEND_ALLOWED_ORIGINS
